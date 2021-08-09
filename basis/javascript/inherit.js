@@ -133,7 +133,7 @@ console.log(person.friends) // [ 'Lily', 'Rose', 'Leize', 'Rob' ]
 
 // 寄生式继承
 /**
- * // 思路：创建一个实现继承的函数，以某种方式增强对象，然后再返回这个对象
+ * 创建一个实现继承的函数，以某种方式增强对象，然后再返回这个对象
  * @param {Object} original 新对象的基准对象
  * @returns {Object}
  */
@@ -157,7 +157,7 @@ anotherPerson3.sayHi() // 'hi'
 // 寄生式组合继承
 // 使用寄生式继承来继承父类原型，然后将返回的新对象赋值给子类原型
 /**
- * 实现组合继承中的子类原型赋值
+ * 实现组合继承中的子类型原型赋值
  * @param {Function} subType 子类构造函数
  * @param {Function} superType 父类构造函数
  */
