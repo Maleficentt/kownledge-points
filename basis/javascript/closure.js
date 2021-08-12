@@ -19,7 +19,7 @@ let object = {
   }
 }
 object.getIdentity() // 'My Object'
-(obejct.getIdentity)() // 'My Object'
+(object.getIdentity)() // 'My Object'
 (object.getIdentity = object.getIdentity)() // 'The Window'
 /**
  * object.getIdentity() 的 getIdentity 是在对象 object 的环境中执行的，所以 this 指向 object 
