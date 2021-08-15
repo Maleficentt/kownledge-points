@@ -17,6 +17,8 @@ Function.prototype._bind = function(context) {
   //   var bingArgs = Array.prototype.slice.call(arguments)
   //   return self.apply(context, args.concat(bingArgs)) // 绑定函数可能有返回值
   // }
+  // 使用空函数进行中转，避免修改fBound.propotype时修改绑定函数的prototype
+  var fNOP = function() {}
   var fBound = function() {
     var bindArgs = Array.prototype.slice.call(arguments)
     // this instanceof fBound ?
@@ -25,8 +27,6 @@ Function.prototype._bind = function(context) {
     return self.apply(this instanceof fBound ? this : context, args.concat(bindArgs))
   }
   // 修改返回函数的propotype为绑定函数的prototype，实例就可以继承绑定函数的原型中的值
-  // 使用空函数进行中转，避免修改fBound.propotype时修改绑定函数的prototype
-  var fNOP = function() {}
   fNOP.prototype = this.prototype
   fBound.prototype = new fNOP()
   return fBound
