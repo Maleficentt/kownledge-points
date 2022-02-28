@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .container {
+      /* width: 500px; */
+      width: 600px;
+      height: 400px;
+      border: 1px solid #000;
+      display: grid;
+      /* grid-template-columns: repeat(2, 100px 50px); */
+      /* grid-template-columns: 150px 1fr 2fr; */
+      /* grid-template-columns: 100px auto 100px; */
+      grid-template-columns: repeat(3, 100px);
+      grid-template-rows: repeat(3, 100px);
+      grid-row-gap: 8px;
+      grid-column-gap: 8px;
+      grid-auto-flow: column;
+    }
+
+    .item {
+      font-size: 2em;
+      text-align: center;
+      border: 1px solid #e5e4e9;
+    }
+
+    .item-1 {
+      background-color: #ef342a;
+    }
+
+    .item-2 {
+      background-color: #f68f26;
+    }
+
+    .item-3 {
+      background-color: #4ba946;
+    }
+
+    .item-4 {
+      background-color: #0376c2;
+    }
+
+    .item-5 {
+      background-color: #c077af;
+    }
+
+    .item-6 {
+      background-color: #f8d29d;
+    }
+
+    .item-7 {
+      background-color: #b5a87f;
+    }
+
+    .item-8 {
+      background-color: #d0e4a9;
+    }
+
+    .item-9 {
+      background-color: #4dc7ec;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container" id="grid-container">
+    <div class="item item-1">1</div>
+    <div class="item item-2">2</div>
+    <div class="item item-3">3</div>
+    <div class="item item-4">4</div>
+    <div class="item item-5">5</div>
+    <div class="item item-6">6</div>
+    <div class="item item-7">7</div>
+    <div class="item item-8">8</div>
+    <div class="item item-9">9</div>
+  </div>
+  <div>
+    <label for="justify-content-select">justify-content: </label>
+    <select name="justify-content" id="justify-content-select">
+      <option value="start">start</option>
+      <option value="end">end</option>
+      <option value="center">center</option>
+      <option value="stretch">stretch</option>
+    </select>
+  </div>
+  <div>
+    <label for="align-content-select">align-content: </label>
+    <select name="align-content" id="align-content-select">
+      <option value="start">start</option>
+      <option value="end">end</option>
+      <option value="center">center</option>
+      <option value="stretch">stretch</option>
+    </select>
+  </div>
+  <div>
+    <label for="justify-items-select">justify-items: </label>
+    <select name="justify-items" id="justify-items-select">
+      <option value="start">start</option>
+      <option value="end">end</option>
+      <option value="center">center</option>
+      <option value="stretch">stretch</option>
+    </select>
+  </div>
+  <div>
+    <label for="align-items-select">align-items: </label>
+    <select name="align-items" id="align-items-select">
+      <option value="start">start</option>
+      <option value="end">end</option>
+      <option value="center">center</option>
+      <option value="stretch">stretch</option>
+    </select>
+  </div>
+
+  <script>
+    const gridContainer = document.getElementById('grid-container')
+    const justifyContentSelect = document.getElementById('justify-content-select')
+    justifyContentSelect.addEventListener('change', () => {
+      gridContainer.style.justifyContent = justifyContentSelect.value
+    })
+    const alignContentSelect = document.getElementById('align-content-select')
+    alignContentSelect.addEventListener('change', () => {
+      gridContainer.style.alignContent = alignContentSelect.value
+    })
+    const justifyItemsSelect = document.getElementById('justify-items-select')
+    justifyItemsSelect.addEventListener('change', () => {
+      gridContainer.style.justifyItems = justifyItemsSelect.value
+    })
+    const alignItemsSelect = document.getElementById('align-items-select')
+    alignItemsSelect.addEventListener('change', () => {
+      gridContainer.style.alignItems = alignItemsSelect.value
+    })
+  </script>
+</body>
+
+</html>
