@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>cross-page-communication</title>
+</head>
+<body>
+  <div>
+    <section>
+      <input type="text" id="input">
+      <button id="send-btn">send</button>
+      <p id="msg"></p>
+    </section>
+  </div>
+  <script>
+    const msgWrapper = document.getElementById('msg')
+    // const bc = new BroadcastChannel('dulu')
+    // bc.onmessage = (e) => {
+    //   const data = e.data
+    //   const text = `[receive] ${data}`
+    //   console.log(e)
+    //   msgWrapper.innerText = text
+    // }
+    // navigator.serviceWorker.register('./sw.js').then(reg => {
+    //   console.log('Service Worker 注册成功')
+    // })
+    // navigator.serviceWorker.addEventListener('message', e => {
+    //   const data = e.data
+    //   const text = `[receive] ${data}`
+    //   console.log(e)
+    //   msgWrapper.innerText = text
+    // })
+    const sharedWorker = new SharedWorker('./shared.js', 'cs')
+    const input = document.getElementById('input')
+    const sendBtn = document.getElementById('send-btn')
+    sendBtn.addEventListener('click', () => {
+      const msg = input.value
+      // bc.postMessage(msg)
+      // window.localStorage.setItem('msg', msg)
+      // navigator.serviceWorker.controller.postMessage(msg)
+      sharedWorker.port.postMessage(msg)
+    })
+    // window.addEventListener('storage', (e) => {
+    //   console.log(e)
+    //   if (e.key === 'msg') {
+    //     const data = e.newValue
+    //     const text = `[receive] ${data}`
+    //     msgWrapper.innerText = text
+    //   }
+    // })
+    // setInterval(() => {
+    //   sharedWorker.port.postMessage({ get: true })
+    // }, 1000)
+    sharedWorker.port.onmessage = e => {
+      console.log(e.data)
+      const data = e.data
+      const text = `[receive] ${data}`
+      console.log(e)
+      msgWrapper.innerText = text
+    }
+  </script>
+</body>
+</html>
