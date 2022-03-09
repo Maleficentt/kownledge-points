@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>hash route</title>
+  <style>
+    #menu {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      position: relative;
+      height: 200px;
+    }
+
+    #menu>li {
+      float: left;
+      margin-left: 20px;
+      padding: 10px 30px;
+      border: 1px solid #000000;
+    }
+
+    ul:not(#menu) {
+      position: absolute;
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <ul id="menu">
+      <li>水果</li>
+      <li>蔬菜</li>
+      <li>零食</li>
+      <li>饮料</li>
+    </ul>
+    <ul id="list1">
+      <li>猕猴桃</li>
+      <li>苹果</li>
+      <li>梨</li>
+    </ul>
+    <ul id="list2">
+      <li>白菜</li>
+      <li>土豆</li>
+      <li>地瓜</li>
+    </ul>
+    <ul id="list3">
+      <li>辣条</li>
+      <li>牛肉干</li>
+      <li>薯片</li>
+    </ul>
+    <ul id="list4">
+      <li>可乐</li>
+      <li>雪碧</li>
+      <li>果汁</li>
+    </ul>
+  </div>
+  
+  <script>
+    const menu = document.getElementById('menu')
+    const lis = Array.from(menu.getElementsByTagName('li'))
+    const uls = Array.from(document.getElementsByTagName('ul')).slice(1)
+    function clickHandler () {
+      const index = lis.indexOf(this)
+      // 将id数据传到新的页面，同时给当前的链接添加锚点标记
+      location.hash = `list${index + 1}`
+      changeList()
+    }
+    function changeList () {
+      const hash = location.hash.substring(1)
+      for (let i = 0; i < uls.length; i++) {
+        if (uls[i].id === hash) {
+          uls[i].style.display = 'block'
+        } else {
+          uls[i].style.display = 'none'
+        }
+      }
+    }
+    // 添加点击事件
+    for (let i = 0; i < lis.length; i++) {
+      lis[i].onclick = clickHandler
+    }
+    // 监听浏览器的前进、回退按钮
+    window.onhashchange = () => {
+      changeList()
+    }
+  </script>
+</body>
+
+</html>
